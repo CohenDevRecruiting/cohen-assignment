@@ -46,4 +46,4 @@ Good Luck!
 Cohen Tech Team
 
 *Image is not meant to define look and feel.  It’s merely here to attempt to provide clarity on the basic requirements.*
-![assigment wire frame](https://github.com/CohenDevRecruiting/cohen-assignment/tree/master/images/assignment-wire-frame.jpg "Todo Wire Frame")
+![assigment wire frame](../blob/master/images/assignment-wire-frame.jpg "Todo Wire Frame")
