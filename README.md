@@ -41,7 +41,10 @@ The to-do list app should consist of two pages. A page that displays all to-do l
 Please feel free to get creative with the application if you would like to add additional features and capabilities beyond the requirements listed above.  
 
 ## Submitting Application 
-After completing the project please save your code to a public repository in Github.  Please notify either the recruiter you are working through or your contact here at Cohen that the application has been completed and pass along a link to your public repository. We will schedule a time where you can discuss your solution with the Cohen team. During this session the team will provide feedback and ask questions. If you have questions in the meantime please reach out.
+During this phase of the interview process a time will be scheduled for an in-person interview where you and the team will go through the application and review the code. The team would like to see how the solution has been implemented and ask questions about the approach; both technically and non-technically.
+                                                                                                                                 
+After completing the project, save your code to a public repository in Github. Notify either the recruiter you are working through or your contact here at Cohen that the application has been completed and pass along a link to your public repository. To prepare for that interview the team at Cohen must have the final version of the assignment 24 hours before the in-person, scheduled interview. If the code is not submitted in-time the interview will be postponed. If you have questions in the meantime please reach out
+
 Good Luck!
 Cohen Tech Team
 
