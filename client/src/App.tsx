@@ -2,7 +2,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 import Todos from './components/Todos'
 import TaskList from './components/TaskList/TaskList'
-// import TaskForm from './components/TaskForm'
 
 
 const App = () => {
