@@ -34,6 +34,10 @@ const TaskForm = ({
     const [error, setError] = useState('')
     const placeholder = isEdit ? 'Edit Task' : 'Add New Task'
 
+    const handleCompleteCheck = (e) => {
+        setIsComplete(e.target.checked ? true : false)
+    }
+
     const saveTask = () => {
         const errMsg = 'Please select a unique name!'
         let updatedTask 
@@ -113,7 +117,7 @@ const TaskForm = ({
                 </div>
                 <div className="task-form__field task-form__field--complete">
                     <label htmlFor="isComplete" className="edit-visible">Is Completed:</label>
-                    <input type="checkbox" name="isComplete" id="isComplete" checked={isComplete} onChange={(e) => setIsComplete(Boolean(e.target.value))}/>
+                    <input type="checkbox" name="isComplete" id="isComplete" checked={isComplete} onChange={(e) => handleCompleteCheck(e)}/>
                 </div>
                 <div className="task-form__field task-form__submit">
                     <button type="button" onClick={() => saveTask()}>Save</button>
