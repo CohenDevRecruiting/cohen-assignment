@@ -67,7 +67,7 @@ const TaskList = () => {
         setShowAddForm(false)
     }
 
-    // find if existing task has same name
+    // if existing task has same name, don't validate
     const isUniqueTaskName = (taskName) => {
         const matches = tasks.filter((t) => t.description === taskName)
         return matches.length === 0 ? true : false
