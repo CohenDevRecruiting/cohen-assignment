@@ -1,0 +1,118 @@
+.task-list {
+    position: relative;
+    margin: 0 auto;
+    width: 50%;
+
+    &__header {
+        align-items: start;
+        display: inline-flex;
+        flex-flow: row wrap;
+        width: 100%;
+    }
+
+    &__heading {
+        display: flex;
+        flex: 1;
+        flex-wrap: wrap;
+        font-weight: bold;
+        height: 1.3em;
+
+        &--desc {
+            align-items: start;
+            min-width: 25%;
+        }
+
+        &--due {
+            align-items: center;
+            min-width: 25%;
+        }
+
+        &--priority {
+            align-items: center;
+            min-width: 10%;
+        }
+
+        &--completed {
+            align-items: center;
+            min-width: 5%;
+        }
+
+        &--edit, &--delete {
+            align-items: center;
+            min-width: 2.5%;
+        }
+    }
+
+    &__list {
+        display: block;
+        height: auto;
+        list-style: none;
+        padding-left: 0;
+        width: 100%;
+
+        &-item {
+            align-items: start;
+            display: inline-flex;
+            flex-flow: row wrap;
+            min-height: 2em;
+            width: 100%;
+
+            &--completed {
+                .task-list__col--desc, .task-list__col--due {
+                    text-decoration: line-through;
+                }
+            }
+        }
+    }
+
+    &__col {
+        display: flex;
+        flex: 1;
+        flex-wrap: wrap;
+        height: 1em;
+
+        &--desc {
+            align-items: start;
+            width: 50%;
+        }
+
+        &--due {
+            align-items: center;
+            width: 25%;
+        }
+
+        &--priority {
+            align-items: center;
+            width: 10%;
+        }
+
+        &--completed {
+            align-items: center;
+            width: 5%;
+        }
+
+        &--edit, &--delete {
+            align-items: center;
+            width: 2.5%;
+        }
+    }
+
+    &__controls {
+        align-items: end;
+        display: inline-flex;
+        margin: 1.2em 0;
+        width: 100%;
+    }
+
+    &__btn {
+        color: black;
+        cursor: pointer;
+        background: #fff;
+        border: 1px solid silver;
+
+        &--delete {
+            color: red;
+        }
+    }
+}
+

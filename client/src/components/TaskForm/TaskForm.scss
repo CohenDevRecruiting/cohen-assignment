@@ -1,0 +1,55 @@
+.task-form {
+    width: 100%;
+
+    &--edit {
+        label {
+            display: none;
+        }
+
+        label.edit-visible {
+            display: flex;
+            font-size: 10px;
+        }
+
+        .task-form__field {
+            display: flex;
+            flex: 1;
+    
+            &--desc {
+                align-items: start;
+                min-width: 25%;
+            }
+    
+            &--due {
+                align-items: center;
+                min-width: 25%;
+            }
+    
+            &--priority {
+                align-items: center;
+                min-width: 10%;
+            }
+    
+            &--completed {
+                align-items: center;
+                min-width: 5%;
+            }
+        }
+    }
+
+    form {
+        align-items: flex-start;
+        display: inline-flex;
+        flex-flow: row wrap;
+        min-width: 100%;
+    }
+
+    &__errors {
+        align-items: flex-end;
+        display: flex;
+        color: red;
+        width: 100%;
+    }
+
+    
+}

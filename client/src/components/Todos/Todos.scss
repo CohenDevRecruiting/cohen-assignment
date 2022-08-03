@@ -1,0 +1,73 @@
+.todos {
+    position: relative;
+    margin: 0 auto;
+    width: 50%;
+
+    &__list {
+        list-style: none;
+        padding-left: 0;
+
+        &-item {
+            align-items: start;
+            display: inline-flex;
+            flex-flow: row wrap;
+            height: 3em;
+            width: 100%;
+
+            &--remaining {
+                .todos-title {
+                    text-decoration: line-through;
+                }
+            }
+        }
+    }
+
+    &__link {
+        align-items: flex-start;
+        display: flex;
+        width: 75%;
+    }
+
+    &__btn {
+        align-items: flex-end;
+        display: flex;
+        height: 2em;
+        text-align: center;
+        width: 2em;
+
+        &--delete {
+            color: red;
+            display: block;
+            float: right;
+        }
+    }
+
+    &__header {
+        align-items: start;
+        display: inline-flex;
+        flex-flow: row wrap;
+        font-weight: bold;
+        width: 100%;
+    }
+
+    &__heading {
+        align-items: start;
+        display: flex;
+        flex: 1;
+        flex-wrap: wrap;
+    }
+
+    &__col {
+        align-items: start;
+        flex: 1;
+        flex-wrap: wrap;
+
+        &--title {
+            width: 60%;
+        }
+
+        &--remaining, &--edit, &--delete {
+            width: 10%;
+        }
+    }
+}
