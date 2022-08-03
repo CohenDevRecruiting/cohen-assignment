@@ -130,7 +130,7 @@ const TaskList = () => {
                                         {!task.isComplete ? (
                                             <button
                                                 type="button"
-                                                className="task-btn"
+                                                className="task-list__btn task-list__btn--edit"
                                                 onClick={() =>
                                                     setEditingTask(task.taskId)
                                                 }
@@ -144,7 +144,7 @@ const TaskList = () => {
                                     <span className="task-list__col task-list__col--delete">
                                         <button
                                             type="button"
-                                            className="task-btn task-btn__delete"
+                                            className="task-list__btn task-list__btn--delete"
                                             onClick={() =>
                                                 deleteTask(task.taskId)
                                             }
