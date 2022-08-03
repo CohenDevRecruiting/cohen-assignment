@@ -42,10 +42,10 @@ const TaskForm = ({
             updatedTask = {
                 taskId: task.taskId,
                 listId: task.listId,
-                description: description,
-                dueDate: dueDate,
-                priority: priority,
-                isComplete: isComplete
+                description,
+                dueDate,
+                priority,
+                isComplete
             }
 
             if (!onValidate(description, taskId)) {
@@ -58,10 +58,10 @@ const TaskForm = ({
         } else {
             updatedTask = {
                 listId: task.listId,
-                description: description,
-                dueDate: dueDate,
-                priority: priority,
-                isComplete: isComplete
+                description,
+                dueDate,
+                priority,
+                isComplete
             }
 
             if (!onValidate(description)) {

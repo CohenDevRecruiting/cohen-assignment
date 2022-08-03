@@ -43,30 +43,23 @@ const TaskList = () => {
         getTasks()
     }, [])
 
-
     const addTask = (task) => {
-        axios
-            .post(`task/add/${listId}`, task)
-            .then((res) => {
-                getTasks()
-                setShowAddForm(false)
-            })
+        axios.post(`task/add/${listId}`, task).then((res) => {
+            getTasks()
+            setShowAddForm(false)
+        })
     }
 
     const editTask = (task) => {
-        axios
-            .post(`task/edit/${task.taskId}`, task)
-            .then((res) => {
-                setEditingTask(-1)
-            })
+        axios.post(`task/edit/${task.taskId}`, task).then((res) => {
+            setEditingTask(-1)
+        })
     }
 
     const deleteTask = (taskId) => {
-        axios
-            .get(`task/delete/${taskId}`)
-            .then((res) => {
-                getTasks()
-            })
+        axios.get(`task/delete/${taskId}`).then((res) => {
+            getTasks()
+        })
     }
 
     const cancelTask = () => {
@@ -74,11 +67,13 @@ const TaskList = () => {
         setShowAddForm(false)
     }
 
+    // find if existing task has same name
     const isUniqueTaskName = (taskName) => {
         const matches = tasks.filter((t) => t.description === taskName)
         return matches.length === 0 ? true : false
     }
 
+    // edited form should validate if name hasn't changed
     const isUniqueEditedTaskName = (taskName, taskId) => {
         const otherTasks = tasks.filter((t) => t.taskId !== taskId)
         const matches = otherTasks.filter((t) => t.description === taskName)

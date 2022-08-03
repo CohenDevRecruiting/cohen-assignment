@@ -14,12 +14,11 @@ const Todos = () => {
     const [showAddForm, setShowAddForm] = useState(false)
 
     const getTodos = () => {
-        axios.get(`todos`)
-          .then(res => {
+        axios.get(`todos`).then((res) => {
             if (res.status === 200) {
-              setTodoList(res.data)
+                setTodoList(res.data)
             }
-          })
+        })
     }
 
     useEffect(() => {
@@ -27,11 +26,10 @@ const Todos = () => {
     }, [])
 
     const deleteTodo = (listId) => {
-        axios.get(`todo/delete/${listId}`)
-        .then((res) => {
+        axios.get(`todo/delete/${listId}`).then((res) => {
             console.log(res.status, res.data)
             getTodos()
-    })
+        })
     }
 
     const isUniqueListName = (title) => {
@@ -42,36 +40,60 @@ const Todos = () => {
     return (
         <div className="todos">
             <h1>My Todos</h1>
-            <header className='todos__header'>
-                <span className='todos__heading todos__heading--title'>Title</span>
-                <span className='todos__heading todos__heading--remaining'>Tasks Remaining</span>
-                <span className='todos__heading todos__heading--delete'>Delete</span>
+            <header className="todos__header">
+                <span className="todos__heading todos__heading--title">
+                    Title
+                </span>
+                <span className="todos__heading todos__heading--remaining">
+                    Tasks Remaining
+                </span>
+                <span className="todos__heading todos__heading--delete">
+                    Delete
+                </span>
             </header>
             <ul className="todos__list">
                 {todoList.map(({ id, title, tasks, numCompleted }) => (
-                    <li key={id} className={cn('todos__list-item', {'todos__list-item--completed': tasks.length > 0 && tasks.length === numCompleted})}>
-                        <span className="todos__col todos__col--title"><NavLink to={`/task-list/${id}`}
-                            element={<TaskList />}
-                            className="todos__link"
-                        >{title}</NavLink>
+                    <li
+                        key={id}
+                        className={cn('todos__list-item', {
+                            'todos__list-item--completed':
+                                tasks.length > 0 &&
+                                tasks.length === numCompleted,
+                        })}
+                    >
+                        <span className="todos__col todos__col--title">
+                            <NavLink
+                                to={`/task-list/${id}`}
+                                element={<TaskList />}
+                                className="todos__link"
+                            >
+                                {title}
+                            </NavLink>
                         </span>
                         <span className="todos__col todos__col--remaining">
-                            {(tasks.length - numCompleted)}
+                            {tasks.length - numCompleted}
                         </span>
                         <span className="todos__col todos__col--delete">
-                            <button className="todos__btn--delete" onClick={() => deleteTodo(id)}><FaTrashAlt /></button>
+                            <button
+                                className="todos__btn--delete"
+                                onClick={() => deleteTodo(id)}
+                            >
+                                <FaTrashAlt />
+                            </button>
                         </span>
                     </li>
                 ))}
             </ul>
             {!showAddForm ? (
-                <button className="todos__btn todos__btn--add" onClick={() => setShowAddForm(true)}>
+                <button
+                    className="todos__btn todos__btn--add"
+                    onClick={() => setShowAddForm(true)}
+                >
                     <FaPlus />
                 </button>
             ) : (
                 <TodoForm onValidate={isUniqueListName} />
             )}
-            
         </div>
     )
 }
