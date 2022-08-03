@@ -1,12 +1,14 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { useParams } from 'react-router-dom'
 import { FaPen, FaPlus, FaTrashAlt } from 'react-icons/fa'
 import axios from 'axios'
 import cn from 'classnames'
+import moment from 'moment'
 
 import TaskForm, { ITaskProps } from '../TaskForm'
 
 import './TaskList.scss'
+
 
 const TaskList = () => {
     // id of the todo list
@@ -28,7 +30,7 @@ const TaskList = () => {
         isComplete: false,
     }
 
-    const getTasks = () => {
+    const getTasks = useCallback(() => {
         axios.get(`todo/${id}`).then((res) => {
             if (res.status === 200) {
                 const data = res.data[0]
@@ -36,12 +38,12 @@ const TaskList = () => {
                 setTasks(data.tasks)
             }
         })
-    }
+    }, [id])
 
     // fetch tasks for todo list on load
     useEffect(() => {
         getTasks()
-    })
+    }, [getTasks])
 
     const addTask = (task: ITaskProps) => {
         axios.post(`task/add/${listId}`, task).then((res) => {
@@ -69,14 +71,18 @@ const TaskList = () => {
 
     // if existing task has same name, don't validate
     const isUniqueTaskName = (taskName: string) => {
-        const matches = tasks.filter((t: ITaskProps) => t.description === taskName)
+        const matches = tasks.filter(
+            (t: ITaskProps) => t.description === taskName
+        )
         return matches.length === 0
     }
 
     // edited form should validate if name hasn't changed
     const isUniqueEditedTaskName = (taskName: string, taskId: number) => {
         const otherTasks = tasks.filter((t: ITaskProps) => t.taskId !== taskId)
-        const matches = otherTasks.filter((t: ITaskProps) => t.description === taskName)
+        const matches = otherTasks.filter(
+            (t: ITaskProps) => t.description === taskName
+        )
         return matches.length === 0
     }
 
@@ -116,7 +122,7 @@ const TaskList = () => {
                                         {task.description}
                                     </span>
                                     <span className="task-list__col task-list__col--due">
-                                        {task.dueDate}
+                                        {moment(task.dueDate).format('M/d/yyyy').toString()}
                                     </span>
                                     <span className="task-list__col task-list__col--priority">
                                         {task.priority}
