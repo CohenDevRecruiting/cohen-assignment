@@ -72,8 +72,7 @@ const Todos = () => {
                     >
                         <span className="todos__col todos__col--title">
                             <NavLink
-                                to={`/task-list/${id}`}
-                                element={<TaskList />}
+                                to={`/task-list/${id}`}                                
                                 className="todos__link"
                             >
                                 {title}
