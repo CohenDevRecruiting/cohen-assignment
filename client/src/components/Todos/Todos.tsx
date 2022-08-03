@@ -5,7 +5,7 @@ import { FaTrashAlt, FaPlus } from 'react-icons/fa'
 import cn from 'classnames'
 
 import TaskList from '../TaskList'
-import TodoForm, { ITodoFormProps } from '../TodoForm'
+import TodoForm from '../TodoForm'
 
 import './Todos.scss'
 

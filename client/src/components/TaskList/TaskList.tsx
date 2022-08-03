@@ -41,7 +41,7 @@ const TaskList = () => {
     // fetch tasks for todo list on load
     useEffect(() => {
         getTasks()
-    }, [])
+    })
 
     const addTask = (task: ITaskProps) => {
         axios.post(`task/add/${listId}`, task).then((res) => {

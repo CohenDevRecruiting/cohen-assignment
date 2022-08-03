@@ -105,11 +105,11 @@
     }
 
     &__btn {
-        color: black;
-        cursor: pointer;
         background: #fff;
         border: 1px solid silver;
-
+        color: black;
+        cursor: pointer;
+        
         &--delete {
             color: red;
         }
