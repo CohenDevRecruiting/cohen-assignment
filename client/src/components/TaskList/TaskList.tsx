@@ -43,20 +43,20 @@ const TaskList = () => {
         getTasks()
     }, [])
 
-    const addTask = (task) => {
+    const addTask = (task: ITaskProps) => {
         axios.post(`task/add/${listId}`, task).then((res) => {
             getTasks()
             setShowAddForm(false)
         })
     }
 
-    const editTask = (task) => {
+    const editTask = (task: ITaskProps) => {
         axios.post(`task/edit/${task.taskId}`, task).then((res) => {
             setEditingTask(-1)
         })
     }
 
-    const deleteTask = (taskId) => {
+    const deleteTask = (taskId: number) => {
         axios.get(`task/delete/${taskId}`).then((res) => {
             getTasks()
         })
@@ -68,16 +68,16 @@ const TaskList = () => {
     }
 
     // if existing task has same name, don't validate
-    const isUniqueTaskName = (taskName) => {
-        const matches = tasks.filter((t) => t.description === taskName)
-        return matches.length === 0 ? true : false
+    const isUniqueTaskName = (taskName: string) => {
+        const matches = tasks.filter((t: ITaskProps) => t.description === taskName)
+        return matches.length === 0
     }
 
     // edited form should validate if name hasn't changed
-    const isUniqueEditedTaskName = (taskName, taskId) => {
-        const otherTasks = tasks.filter((t) => t.taskId !== taskId)
-        const matches = otherTasks.filter((t) => t.description === taskName)
-        return matches.length === 0 ? true : false
+    const isUniqueEditedTaskName = (taskName: string, taskId: number) => {
+        const otherTasks = tasks.filter((t: ITaskProps) => t.taskId !== taskId)
+        const matches = otherTasks.filter((t: ITaskProps) => t.description === taskName)
+        return matches.length === 0
     }
 
     return (

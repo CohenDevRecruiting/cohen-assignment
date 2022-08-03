@@ -5,9 +5,14 @@ import { FaTrashAlt, FaPlus } from 'react-icons/fa'
 import cn from 'classnames'
 
 import TaskList from '../TaskList'
-import TodoForm from '../TodoForm'
+import TodoForm, { ITodoFormProps } from '../TodoForm'
 
 import './Todos.scss'
+
+export interface ITodoProps {
+    id: string
+    title: string
+}
 
 const Todos = () => {
     const [todoList, setTodoList] = useState([])
@@ -25,7 +30,7 @@ const Todos = () => {
         getTodos()
     }, [])
 
-    const deleteTodo = (listId) => {
+    const deleteTodo = (listId: number) => {
         axios.get(`todo/delete/${listId}`).then((res) => {
             console.log(res.status, res.data)
             getTodos()
@@ -36,8 +41,8 @@ const Todos = () => {
         setShowAddForm(false)
     }
 
-    const isUniqueListName = (title) => {
-        const matches = todoList.filter((todo) => todo.title === title)
+    const isUniqueListName = (title: string) => {
+        const matches = todoList.filter((todo: ITodoProps) => todo.title === title)
         return matches.length === 0 ? true : false
     }
 

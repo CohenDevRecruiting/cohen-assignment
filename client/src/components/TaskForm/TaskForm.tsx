@@ -4,7 +4,7 @@ import cn from 'classnames'
 import './TaskForm.scss'
 
 export interface ITaskProps {
-    taskId: number | null
+    taskId?: number | null
     listId: number
     description: string
     dueDate: string
