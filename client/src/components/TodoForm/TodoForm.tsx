@@ -4,10 +4,11 @@ import axios from 'axios'
 import './TodoForm.scss'
 
 export interface ITodoFormProps {
+    onCancel: () => void
     onValidate: (title: string) => boolean
 }
 
-const TodoForm = ({ onValidate }: ITodoFormProps) => {
+const TodoForm = ({ onCancel, onValidate }: ITodoFormProps) => {
     const [title, setTitle] = useState('')
     const [error, setError] = useState('')
 
@@ -31,6 +32,9 @@ const TodoForm = ({ onValidate }: ITodoFormProps) => {
             />
             <button className="todo-add" onClick={addTodoList}>
                 Add
+            </button>
+            <button className="todo-add" onClick={onCancel}>
+                Cancel
             </button>
             <div className="todo-form__error">{error}</div>
         </form>

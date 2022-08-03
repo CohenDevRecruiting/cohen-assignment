@@ -32,6 +32,10 @@ const Todos = () => {
         })
     }
 
+    const cancelTodo = () => {
+        setShowAddForm(false)
+    }
+
     const isUniqueListName = (title) => {
         const matches = todoList.filter((todo) => todo.title === title)
         return matches.length === 0 ? true : false
@@ -92,7 +96,7 @@ const Todos = () => {
                     <FaPlus />
                 </button>
             ) : (
-                <TodoForm onValidate={isUniqueListName} />
+                <TodoForm onCancel={cancelTodo} onValidate={isUniqueListName} />
             )}
         </div>
     )
