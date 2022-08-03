@@ -4,7 +4,6 @@ import axios from 'axios'
 import { FaTrashAlt, FaPlus } from 'react-icons/fa'
 import cn from 'classnames'
 
-import TaskList from '../TaskList'
 import TodoForm from '../TodoForm'
 
 import './Todos.scss'
