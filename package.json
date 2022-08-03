@@ -4,10 +4,20 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "body-parser": "^1.20.0",
+    "classnames": "^2.3.1",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
-    "lodash": "^4.17.15"
+    "lodash": "^4.17.15",
+    "react-icons": "^4.4.0",
+    "react-moment": "^1.1.2",
+    "react-router-dom": "^6.3.0",
+    "scss": "^0.2.4"
   },
   "scripts": {
     "start": "node index.js"
+  },
+  "devDependencies": {
+    "sass": "^1.54.0"
   }
 }
