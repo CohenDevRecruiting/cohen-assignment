@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
-import { useParams } from 'react-router-dom'
-import { FaPen, FaPlus, FaTrashAlt } from 'react-icons/fa'
+import { useParams, useNavigate } from 'react-router-dom'
+import { FaArrowLeft, FaPen, FaPlus, FaTrashAlt } from 'react-icons/fa'
 import axios from 'axios'
 import cn from 'classnames'
 import moment from 'moment'
@@ -13,6 +13,7 @@ import './TaskList.scss'
 const TaskList = () => {
     // id of the todo list
     const { id } = useParams()
+    const navigate = useNavigate()
     // number version of id
     const listId = Number(id)
     const [title, setTitle] = useState('')
@@ -20,6 +21,7 @@ const TaskList = () => {
     const [showAddForm, setShowAddForm] = useState(false)
     // won't display edit form if set to -1
     const [editingTask, setEditingTask] = useState(-1)
+    const [error, setError] = useState('')
 
     const newTask: ITaskProps = {
         taskId: null,
@@ -55,6 +57,7 @@ const TaskList = () => {
     const editTask = (task: ITaskProps) => {
         axios.post(`task/edit/${task.taskId}`, task).then((res) => {
             setEditingTask(-1)
+            getTasks()
         })
     }
 
@@ -117,7 +120,7 @@ const TaskList = () => {
                             })}
                         >
                             {editingTask !== task.taskId ? (
-                                <>
+                                <div className="task-list__row">
                                     <span className="task-list__col task-list__col--desc">
                                         {task.description}
                                     </span>
@@ -153,7 +156,12 @@ const TaskList = () => {
                                             <FaTrashAlt />
                                         </button>
                                     </span>
-                                </>
+                                    {error !== '' ? (
+                                        <span className="task-list__error">
+                                            {error}
+                                        </span>
+                                    ) : '\u00A0'}
+                                </div>
                             ) : (
                                 <TaskForm
                                     task={task}
@@ -165,17 +173,23 @@ const TaskList = () => {
                         </li>
                     ))
                 ) : (
-                    <p>No tasks added yet.</p>
+                    <p className='task-list__msg--no-task'>No tasks added yet.</p>
                 )}
             </ul>
             <div className="task-list__controls">
                 {!showAddForm ? (
-                    <button
-                        className="task-btn task-btn__add"
-                        onClick={() => setShowAddForm(true)}
-                    >
-                        <FaPlus />
-                    </button>
+                    <>
+                        <button className="task-btn task-btn__back"
+                        onClick={() => navigate(-1)}>
+                            <FaArrowLeft />
+                        </button>
+                        <button
+                            className="task-btn task-btn__add"
+                            onClick={() => setShowAddForm(true)}
+                        >
+                            <FaPlus />
+                        </button>
+                    </>
                 ) : (
                     <TaskForm
                         task={newTask}

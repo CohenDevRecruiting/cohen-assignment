@@ -30,10 +30,10 @@ const TodoForm = ({ onCancel, onValidate }: ITodoFormProps) => {
                 className="todo-input"
                 onChange={(e) => setTitle(e.target.value)}
             />
-            <button className="todo-add" onClick={addTodoList}>
+            <button className="todo-form__btn todo-form__btn--add" onClick={addTodoList}>
                 Add
             </button>
-            <button className="todo-add" onClick={onCancel}>
+            <button className="todo-form__btn todo-form__btn--cancel" onClick={onCancel}>
                 Cancel
             </button>
             <div className="todo-form__error">{error}</div>

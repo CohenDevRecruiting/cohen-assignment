@@ -21,6 +21,8 @@ const Todos = () => {
         axios.get(`todos`).then((res) => {
             if (res.status === 200) {
                 setTodoList(res.data)
+            } else {
+                return 'something went wrong'
             }
         })
     }
@@ -42,7 +44,7 @@ const Todos = () => {
 
     const isUniqueListName = (title: string) => {
         const matches = todoList.filter((todo: ITodoProps) => todo.title === title)
-        return matches.length === 0 ? true : false
+        return matches.length === 0
     }
 
     return (

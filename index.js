@@ -82,7 +82,7 @@ app.post('/task/add/:listId', (req, res) => {
         priority: req.body.priority,
         isComplete: req.body.isComplete,
     }
-    tasks.push(newTask)
+    tasks.push(newTasks)
     return res.status(200).send(tasks)
 })
 

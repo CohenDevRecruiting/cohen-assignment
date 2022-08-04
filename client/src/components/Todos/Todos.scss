@@ -1,73 +1,68 @@
+@use '../../styles/shared';
+
 .todos {
     position: relative;
     margin: 0 auto;
-    width: 50%;
+    width: 60%;
+
+    &__header {
+        @extend %todo-grid;
+        height: 3em;
+    }
+
+    &__heading {
+        font-weight: bold;
+        text-align: center;
+    }
+
+    &__link {
+        color: blue;
+
+        &:visited {
+            color: violet;
+        }
+    }
 
     &__list {
         list-style: none;
         padding-left: 0;
 
         &-item {
-            align-items: start;
-            display: inline-flex;
-            flex-flow: row wrap;
-            height: 3em;
+            @extend %todo-grid;
+            height: 2em;
             width: 100%;
 
-            &--remaining {
-                .todos-title {
+            &--completed {
+                a {
                     text-decoration: line-through;
                 }
             }
         }
     }
 
-    &__link {
-        align-items: flex-start;
+    &__col {
         display: flex;
-        width: 75%;
+        height: 3em;
+        justify-content: center;
+
+        &--title {
+            justify-content: left;
+        }
     }
 
     &__btn {
-        align-items: flex-end;
-        display: flex;
-        height: 2em;
-        text-align: center;
-        width: 2em;
 
+        &--add {
+            max-width: 60px;
+        }
+        
+        &--edit {
+            color: green;
+        }
+        
         &--delete {
             color: red;
-            display: block;
-            float: right;
         }
     }
 
-    &__header {
-        align-items: start;
-        display: inline-flex;
-        flex-flow: row wrap;
-        font-weight: bold;
-        width: 100%;
-    }
-
-    &__heading {
-        align-items: start;
-        display: flex;
-        flex: 1;
-        flex-wrap: wrap;
-    }
-
-    &__col {
-        align-items: start;
-        flex: 1;
-        flex-wrap: wrap;
-
-        &--title {
-            width: 60%;
-        }
-
-        &--remaining, &--edit, &--delete {
-            width: 10%;
-        }
-    }
 }

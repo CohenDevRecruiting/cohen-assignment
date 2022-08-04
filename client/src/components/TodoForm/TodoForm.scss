@@ -1,4 +1,13 @@
+@use '../../styles/shared';
+
 .todo-form {
+    @extend %todo-grid;
+
+    &__btn {
+        text-align: center;
+        width: 100px;
+    }
+
     &__error {
         color: red;
     }

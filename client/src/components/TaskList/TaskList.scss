@@ -1,46 +1,18 @@
+@use '../../styles/shared';
+
 .task-list {
     position: relative;
     margin: 0 auto;
-    width: 50%;
+    width: 60%;
 
     &__header {
-        align-items: start;
-        display: inline-flex;
-        flex-flow: row wrap;
-        width: 100%;
+        @extend %task-grid;
+        height: 1em;
     }
 
     &__heading {
-        display: flex;
-        flex: 1;
-        flex-wrap: wrap;
         font-weight: bold;
-        height: 1.3em;
-
-        &--desc {
-            align-items: start;
-            min-width: 25%;
-        }
-
-        &--due {
-            align-items: center;
-            min-width: 25%;
-        }
-
-        &--priority {
-            align-items: center;
-            min-width: 10%;
-        }
-
-        &--completed {
-            align-items: center;
-            min-width: 5%;
-        }
-
-        &--edit, &--delete {
-            align-items: center;
-            min-width: 2.5%;
-        }
+        text-align: center;
     }
 
     &__list {
@@ -51,64 +23,47 @@
         width: 100%;
 
         &-item {
-            align-items: start;
-            display: inline-flex;
-            flex-flow: row wrap;
-            min-height: 2em;
-            width: 100%;
+            height: 2em;
 
             &--completed {
-                .task-list__col--desc, .task-list__col--due {
+                .task-list__col {
                     text-decoration: line-through;
                 }
             }
         }
     }
 
+    &__row {
+        @extend %task-grid;
+    }
+
+    &__msg--no-task {
+        display: flex;
+        font-style: italic;
+        justify-content: center;
+    }
+
     &__col {
         display: flex;
-        flex: 1;
-        flex-wrap: wrap;
-        height: 1em;
+        height: 3em;
+        justify-content: center;
 
         &--desc {
-            align-items: start;
-            width: 50%;
-        }
-
-        &--due {
-            align-items: center;
-            width: 25%;
-        }
-
-        &--priority {
-            align-items: center;
-            width: 10%;
-        }
-
-        &--completed {
-            align-items: center;
-            width: 5%;
-        }
-
-        &--edit, &--delete {
-            align-items: center;
-            width: 2.5%;
+            justify-content: left;
         }
     }
 
     &__controls {
-        align-items: end;
+        align-items: flex-end;
         display: inline-flex;
         margin: 1.2em 0;
         width: 100%;
     }
 
     &__btn {
-        background: #fff;
-        border: 1px solid silver;
-        color: black;
-        cursor: pointer;
+        &--edit {
+            color: green;
+        }
         
         &--delete {
             color: red;

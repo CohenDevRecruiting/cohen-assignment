@@ -1,3 +1,5 @@
+@use '../../styles/shared';
+
 .task-form {
     width: 100%;
 
@@ -6,42 +8,39 @@
             display: none;
         }
 
-        label.edit-visible {
+        label.visible-on-edit {
             display: flex;
-            font-size: 10px;
+            font-size: 11px;
         }
 
-        .task-form__field {
-            display: flex;
-            flex: 1;
-    
-            &--desc {
-                align-items: start;
-                min-width: 25%;
-            }
-    
-            &--due {
-                align-items: center;
-                min-width: 25%;
-            }
-    
-            &--priority {
-                align-items: center;
-                min-width: 10%;
-            }
-    
-            &--completed {
-                align-items: center;
-                min-width: 5%;
-            }
+    }
+
+    &__form {
+        @extend %task-grid;
+        width: 100%;
+    }
+
+    &__field {
+        align-items: center;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        &--submit {
+            text-align: center;
         }
     }
 
-    form {
-        align-items: flex-start;
-        display: inline-flex;
-        flex-flow: row wrap;
-        min-width: 100%;
+    &__label {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    &__btn {
+        display: flex;
+        justify-content: center;
+        width: 60px;
     }
 
     &__errors {

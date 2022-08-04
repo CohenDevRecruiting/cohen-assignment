@@ -40,16 +40,18 @@ const TaskForm = ({
 
     const saveTask = () => {
         const errMsg = 'Please select a unique name!'
-        let updatedTask 
+        let updatedTask: ITaskProps = {
+            listId: task.listId,
+            description,
+            dueDate,
+            priority,
+            isComplete
+        } 
 
         if (isEdit) {
             updatedTask = {
                 taskId: task.taskId,
-                listId: task.listId,
-                description,
-                dueDate,
-                priority,
-                isComplete
+                ...updatedTask
             }
 
             if (!onValidate(description, taskId)) {
@@ -59,15 +61,7 @@ const TaskForm = ({
                 setError('')
             }
 
-        } else {
-            updatedTask = {
-                listId: task.listId,
-                description,
-                dueDate,
-                priority,
-                isComplete
-            }
-
+        } else { 
             if (!onValidate(description)) {
                 setError(errMsg)
             } else {
@@ -79,10 +73,10 @@ const TaskForm = ({
 
     return (
         <div className={cn('task-form', { 'task-form--edit' : isEdit })}>
-            {!isEdit ? <h1>Add Task</h1> : null}
-            <form>
+            {!isEdit ? <h2>Add Task</h2> : null}
+            <form className="task-form__form">
                 <div className="task-form__field task-form__field--desc">
-                    <label htmlFor="description">Description:</label>
+                    <label className="task-form__label" htmlFor="description">Description:</label>
                     <input
                         type="text"
                         placeholder={placeholder}
@@ -93,7 +87,7 @@ const TaskForm = ({
                     />
                 </div>
                 <div className="task-form__field task-form__field--due">
-                    <label htmlFor="dueDate">Due Date:</label>
+                    <label className="task-form__label" htmlFor="dueDate">Due Date:</label>
                     <input
                         type="date"
                         id="dueDate"
@@ -103,12 +97,14 @@ const TaskForm = ({
                     />
                 </div>
                 <div className="task-form__field task-form__field--priority">
-                    <label htmlFor="priority">Priority: </label>
+                    <label className="task-form__label" htmlFor="priority">Priority: </label>
                     <select
                         name="priority"
                         id="priority"
                         value={priority}
-                        onChange={(e) => setPriority(e.target.value)}
+                        onChange={(e) => {
+                            setPriority(e.target.value)
+                        }}
                     >
                         <option value="high">High</option>
                         <option value="medium">Medium</option>
@@ -116,12 +112,12 @@ const TaskForm = ({
                     </select>
                 </div>
                 <div className="task-form__field task-form__field--complete">
-                    <label htmlFor="isComplete" className="edit-visible">Is Completed:</label>
+                    <label htmlFor="isComplete" className="task-form__label visible-on-edit">Completed:</label>
                     <input type="checkbox" name="isComplete" id="isComplete" checked={isComplete} onChange={(e) => handleCompleteCheck(e)}/>
                 </div>
                 <div className="task-form__field task-form__submit">
-                    <button type="button" onClick={() => saveTask()}>Save</button>
-                    <button type="button" onClick={() => onCancel()}>Cancel</button>
+                    <button type="button" className="task-form__btn" onClick={() => saveTask()}>Save</button>
+                    <button type="button" className="task-form__btn" onClick={() => onCancel()}>Cancel</button>
                 </div>
                 <div className="task-form__errors">
                     {error}
