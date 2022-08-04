@@ -4,11 +4,11 @@
     width: 100%;
 
     &--edit {
-        label {
+        .task-form__label {
             display: none;
         }
 
-        label.visible-on-edit {
+        .visible-on-edit {
             display: flex;
             font-size: 11px;
         }
