@@ -11,23 +11,24 @@ import './TaskList.scss'
 
 
 const TaskList = () => {
-    // id of the todo list
-    const { id } = useParams()
     const navigate = useNavigate()
+    const { id } = useParams()
     // number version of id
     const listId = Number(id)
+    // default due date
+    const today = moment().format('yyyy-MM-DD').toString()
+    
     const [title, setTitle] = useState('')
     const [tasks, setTasks] = useState([])
     const [showAddForm, setShowAddForm] = useState(false)
     // won't display edit form if set to -1
     const [editingTask, setEditingTask] = useState(-1)
-    const [error, setError] = useState('')
 
     const newTask: ITaskProps = {
         taskId: null,
         listId,
         description: '',
-        dueDate: '',
+        dueDate: today,
         priority: 'low',
         isComplete: false,
     }
@@ -156,11 +157,6 @@ const TaskList = () => {
                                             <FaTrashAlt />
                                         </button>
                                     </span>
-                                    {error !== '' ? (
-                                        <span className="task-list__error">
-                                            {error}
-                                        </span>
-                                    ) : '\u00A0'}
                                 </div>
                             ) : (
                                 <TaskForm

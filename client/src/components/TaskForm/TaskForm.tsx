@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import cn from 'classnames'
+import moment from 'moment'
 
 import './TaskForm.scss'
 
@@ -25,14 +26,15 @@ const TaskForm = ({
     onSave,
     onValidate,
 }: ITaskFormProps) => {
-    const taskId = task.taskId
-    const isEdit = taskId !== null
+    const isEdit = task.taskId !== null
+
     const [description, setDescription] = useState(task.description)
     const [dueDate, setDueDate] = useState(task.dueDate)
     const [priority, setPriority] = useState(task.priority)
     const [isComplete, setIsComplete] = useState(task.isComplete)
     const [error, setError] = useState('')
     const placeholder = isEdit ? 'Edit Task' : 'Add New Task'
+    
 
     const handleCompleteCheck = (e) => {
         setIsComplete(e.target.checked ? true : false)
@@ -54,7 +56,7 @@ const TaskForm = ({
                 ...updatedTask
             }
 
-            if (!onValidate(description, taskId)) {
+            if (!onValidate(description, task.taskId)) {
                 setError(errMsg)
             } else {
                 onSave(updatedTask)

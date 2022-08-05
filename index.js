@@ -39,6 +39,10 @@ function getTodoById(_id) {
     return todo
 }
 
+function createId() {
+    return Math.floor(Math.random() * 1000)
+}
+
 // gets full list of todos
 app.get('/todos', (req, res) => {
     const todosWTasks = getTodosWTasks()
@@ -54,7 +58,7 @@ app.get('/todo/:id', (req, res) => {
 // adds a todo
 app.post('/todo', (req, res) => {
     const title = req.body.title
-    const id = todos.length + 1
+    const id = createId()
     const newTodo = {
         id: id,
         title: title,
@@ -73,7 +77,7 @@ app.get('/todo/delete/:listId', (req, res) => {
 
 app.post('/task/add/:listId', (req, res) => {
    const taskName = req.body.description
-    const newTaskId = tasks.length + 1
+    const newTaskId = createId()
     const newTask = {
         taskId: newTaskId,
         listId: parseInt(req.params.listId),
@@ -82,7 +86,7 @@ app.post('/task/add/:listId', (req, res) => {
         priority: req.body.priority,
         isComplete: req.body.isComplete,
     }
-    tasks.push(newTasks)
+    tasks.push(newTask)
     return res.status(200).send(tasks)
 })
 
