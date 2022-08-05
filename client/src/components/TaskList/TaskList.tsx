@@ -33,12 +33,23 @@ const TaskList = () => {
         isComplete: false,
     }
 
+    const sortByPriority = (_tasks) => {
+        const priorityOrder = ['high', 'medium', 'low']
+        _tasks.sort((a, b) => {
+            const first = priorityOrder.indexOf(a.priority)
+            const second = priorityOrder.indexOf(b.priority)
+            return first - second
+        })
+        return _tasks
+    }
+
     const getTasks = useCallback(() => {
         axios.get(`todo/${id}`).then((res) => {
             if (res.status === 200) {
                 const data = res.data[0]
                 setTitle(data.title)
-                setTasks(data.tasks)
+                const sortedTasks = sortByPriority(data.tasks)
+                setTasks(sortedTasks)
             }
         })
     }, [id])
