@@ -43,7 +43,7 @@ const TaskList = () => {
         return _tasks
     }
 
-    const getTasks = useCallback(() => {
+    const fetchTasks = useCallback(() => {
         axios.get(`todo/${id}`).then((res) => {
             if (res.status === 200) {
                 const data = res.data[0]
@@ -56,12 +56,12 @@ const TaskList = () => {
 
     // fetch tasks for todo list on load
     useEffect(() => {
-        getTasks()
-    }, [getTasks])
+        fetchTasks()
+    }, [fetchTasks])
 
     const addTask = (task: ITaskProps) => {
         axios.post(`task/add/${listId}`, task).then((res) => {
-            getTasks()
+            fetchTasks()
             setShowAddForm(false)
         })
     }
@@ -69,13 +69,13 @@ const TaskList = () => {
     const editTask = (task: ITaskProps) => {
         axios.post(`task/edit/${task.taskId}`, task).then((res) => {
             setEditingTask(-1)
-            getTasks()
+            fetchTasks()
         })
     }
 
     const deleteTask = (taskId: number) => {
         axios.get(`task/delete/${taskId}`).then((res) => {
-            getTasks()
+            fetchTasks()
         })
     }
 
