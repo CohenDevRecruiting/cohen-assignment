@@ -75,7 +75,6 @@ app.get('/todo/delete/:listId', (req, res) => {
 })
 
 app.post('/task/add/:listId', (req, res) => {
-    const taskName = req.body.description
     const newTask = {
         taskId: createId(),
         listId: parseInt(req.params.listId),
