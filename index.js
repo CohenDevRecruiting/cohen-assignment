@@ -58,10 +58,9 @@ app.get('/todo/:id', (req, res) => {
 // adds a todo
 app.post('/todo', (req, res) => {
     const title = req.body.title
-    const id = createId()
     const newTodo = {
-        id: id,
-        title: title,
+        id: createId(),
+        title,
     }
 
     todos.push(newTodo)
@@ -70,16 +69,15 @@ app.post('/todo', (req, res) => {
 
 app.get('/todo/delete/:listId', (req, res) => {
     const listId = req.params.listId
-    todos = todos.filter(todo => todo.id !== parseInt(listId))
-    tasks = tasks.filter(task => task.listId !== parseInt(listId))
+    todos = todos.filter((todo) => todo.id !== parseInt(listId))
+    tasks = tasks.filter((task) => task.listId !== parseInt(listId))
     return res.status(200).send(todos)
 })
 
 app.post('/task/add/:listId', (req, res) => {
-   const taskName = req.body.description
-    const newTaskId = createId()
+    const taskName = req.body.description
     const newTask = {
-        taskId: newTaskId,
+        taskId: createId(),
         listId: parseInt(req.params.listId),
         description: req.body.description,
         dueDate: req.body.dueDate,
@@ -91,11 +89,9 @@ app.post('/task/add/:listId', (req, res) => {
 })
 
 app.post('/task/edit/:taskId', (req, res) => {
-    const taskId = parseInt(req.params.taskId)
-    const listId = parseInt(req.body.listId)
     const editedTask = {
-        taskId: taskId,
-        listId: listId,
+        taskId: parseInt(req.params.taskId),
+        listId: parseInt(req.body.listId),
         description: req.body.description,
         dueDate: req.body.dueDate,
         priority: req.body.priority,
@@ -112,7 +108,7 @@ app.post('/task/edit/:taskId', (req, res) => {
 
 app.get('/task/delete/:taskId', (req, res) => {
     const taskId = req.params.taskId
-    tasks = tasks.filter(task => task.taskId !== parseInt(taskId))
+    tasks = tasks.filter((task) => task.taskId !== parseInt(taskId))
     return res.status(200).send(tasks)
 })
 
