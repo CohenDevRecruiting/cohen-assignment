@@ -40,6 +40,9 @@ The to-do list app should consist of two pages. A page that displays all to-do l
   * The form should have a submit button that saves the changes and returns the task to the read-only view. It should also have a cancel button that returns the task to its read-only view.
 Please feel free to get creative with the application if you would like to add additional features and capabilities beyond the requirements listed above.  
 
+## Building and Running
+Please provide instructions on how your application should be built and how the application can be run.  This will be used by the development team to review your application prior to our meeting.
+
 ## Submitting Application 
 During this phase of the interview process a time will be scheduled for an in-person interview where you and the team will go through the application and review the code. The team would like to see how the solution has been implemented and ask questions about the approach; both technically and non-technically.
                                                                                                                                  
